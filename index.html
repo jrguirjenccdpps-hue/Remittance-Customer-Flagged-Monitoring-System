@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Remittance-Customer-Flagged-Monitoring-System | Professional Dashboard</title>
+<title>Remittance-Customer-Flagged-Monitoring-System | Login</title>
 
 <!-- Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -66,12 +66,219 @@ body {
 }
 
 /* ============================================
+   LOGIN SCREEN
+   ============================================ */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  padding: 20px;
+}
+
+.login-box {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-input-group {
+  text-align: left;
+}
+
+.login-input-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: var(--bg-primary);
+}
+
+.login-input-group input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+}
+
+.login-btn {
+  padding: 14px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.login-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.login-error {
+  background: #fef2f2;
+  color: var(--danger);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid #fecaca;
+  font-size: 0.9rem;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.login-error.show {
+  display: flex;
+}
+
+.login-footer {
+  margin-top: 30px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   LOGGED IN HEADER
+   ============================================ */
+.user-header {
+  background: var(--card-bg);
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.user-role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background: white;
+  color: var(--danger);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logout-btn:hover {
+  background: #fef2f2;
+  border-color: var(--danger);
+}
+
+/* ============================================
    LAYOUT STRUCTURE
    ============================================ */
 .app-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
+  display: none;
+}
+
+.app-container.logged-in {
+  display: block;
 }
 
 /* Header */
@@ -903,6 +1110,7 @@ body {
   .no-print { display: none !important; }
   .report-mode { display: block !important; }
   .app-container { display: none; }
+  .login-container { display: none !important; }
   .watermark { position: fixed; }
   @page { size: A4 landscape; margin: 15mm; }
 }
@@ -919,6 +1127,8 @@ body {
   .record-card { grid-template-columns: 1fr; }
   .record-actions { justify-content: flex-start; }
   .branches-grid { grid-template-columns: 1fr; }
+  .login-box { padding: 30px 20px; }
+  .user-header { flex-direction: column; gap: 10px; text-align: center; }
 }
 
 /* Utility */
@@ -931,11 +1141,64 @@ body {
 <body>
 
 <!-- ============================================
-     INTERACTIVE DASHBOARD MODE
+     LOGIN SCREEN
      ============================================ -->
-<div class="app-container no-print">
+<div class="login-container" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">🏦</div>
+    <h1 class="login-title">PGCPI Security</h1>
+    <p class="login-subtitle">Remittance-Customer-Flagged-Monitoring-System</p>
+    
+    <form class="login-form" onsubmit="handleLogin(event)">
+      <div class="login-input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" autocomplete="off" required>
+      </div>
+      
+      <div class="login-input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+      
+      <button type="submit" class="login-btn">
+        <span>🔐</span>
+        Secure Login
+      </button>
+      
+      <div class="login-error" id="loginError">
+        <span>⚠️</span>
+        <span>Invalid username or password</span>
+      </div>
+    </form>
+    
+    <div class="login-footer">
+      <p>© 2026 PGCPI Compliance Division</p>
+      <p style="margin-top: 4px; font-size: 0.75rem;">Authorized Personnel Only</p>
+    </div>
+  </div>
+</div>
 
-  <!-- Header -->
+<!-- ============================================
+     MAIN APPLICATION (Hidden until login)
+     ============================================ -->
+<div class="app-container" id="mainApp">
+  
+  <!-- User Header -->
+  <div class="user-header no-print">
+    <div class="user-info">
+      <div class="user-avatar" id="userAvatar">P</div>
+      <div class="user-details">
+        <span class="user-name" id="userNameDisplay">PGCPIKOY</span>
+        <span class="user-role">Compliance Officer</span>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="handleLogout()">
+      <span>🚪</span>
+      Logout
+    </button>
+  </div>
+
+  <!-- App Header -->
   <header class="app-header">
     <div class="header-content">
       <h1 class="app-title">
@@ -971,7 +1234,7 @@ body {
   <div id="resultsContainer">
     <div class="alert alert-info">
       <span>ℹ️</span>
-      <span>Enter a Customer ID above to retrieve transaction monitoring records.</span>
+      <span>Welcome <strong id="welcomeUser">Officer</strong>. Enter a Customer ID above to retrieve transaction monitoring records.</span>
     </div>
   </div>
 
@@ -995,6 +1258,7 @@ body {
     <p><strong>Customer ID:</strong> <span id="reportCustomerId"></span></p>
     <p><strong>Report Generated:</strong> <span id="reportDate"></span></p>
     <p><strong>Report Number:</strong> <span id="reportNumber"></span></p>
+    <p><strong>Generated By:</strong> <span id="reportGeneratedBy">PGCPIKOY</span></p>
   </div>
 
   <div class="report-section">
@@ -1074,9 +1338,119 @@ body {
 
 <script>
 // ============================================
+// AUTHENTICATION CONFIGURATION
+// ============================================
+const AUTH_CONFIG = {
+  username: "PGCPIKOY",
+  password: "CD@2026",
+  role: "Compliance Officer",
+  department: "PGCPI"
+};
+
+let currentUser = null;
+
+// ============================================
+// LOGIN/LOGOUT FUNCTIONS
+// ============================================
+function handleLogin(event) {
+  event.preventDefault();
+  
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  const errorDiv = document.getElementById('loginError');
+  
+  // Validate credentials
+  if (username === AUTH_CONFIG.username && password === AUTH_CONFIG.password) {
+    // Successful login
+    currentUser = {
+      username: AUTH_CONFIG.username,
+      role: AUTH_CONFIG.role,
+      department: AUTH_CONFIG.department,
+      loginTime: new Date().toISOString()
+    };
+    
+    // Store in session (will be cleared when page closes)
+    sessionStorage.setItem('pgcpi_user', JSON.stringify(currentUser));
+    
+    // Show main app
+    showMainApp();
+    
+    // Clear form
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    errorDiv.classList.remove('show');
+    
+  } else {
+    // Failed login
+    errorDiv.classList.add('show');
+    document.getElementById('password').value = '';
+    document.getElementById('password').focus();
+  }
+}
+
+function handleLogout() {
+  // Clear session
+  sessionStorage.removeItem('pgcpi_user');
+  currentUser = null;
+  
+  // Reset charts
+  chartInstances.forEach(chart => chart.destroy());
+  chartInstances = [];
+  
+  // Clear results
+  document.getElementById('resultsContainer').innerHTML = `
+    <div class="alert alert-info">
+      <span>ℹ️</span>
+      <span>Welcome <strong>Officer</strong>. Enter a Customer ID above to retrieve transaction monitoring records.</span>
+    </div>
+  `;
+  document.getElementById('customerId').value = '';
+  
+  // Show login screen
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('mainApp').classList.remove('logged-in');
+  
+  console.log('User logged out successfully');
+}
+
+function showMainApp() {
+  // Hide login, show app
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('mainApp').classList.add('logged-in');
+  
+  // Update user display
+  const avatar = document.getElementById('userAvatar');
+  const nameDisplay = document.getElementById('userNameDisplay');
+  const welcomeUser = document.getElementById('welcomeUser');
+  const reportGeneratedBy = document.getElementById('reportGeneratedBy');
+  
+  if (currentUser) {
+    avatar.textContent = currentUser.username.charAt(0).toUpperCase();
+    nameDisplay.textContent = currentUser.username;
+    welcomeUser.textContent = currentUser.username;
+    reportGeneratedBy.textContent = currentUser.username;
+  }
+  
+  console.log('User logged in:', currentUser);
+}
+
+function checkExistingSession() {
+  // Check if user already logged in this session
+  const saved = sessionStorage.getItem('pgcpi_user');
+  if (saved) {
+    try {
+      currentUser = JSON.parse(saved);
+      showMainApp();
+    } catch (e) {
+      sessionStorage.removeItem('pgcpi_user');
+    }
+  }
+}
+
+// ============================================
 // CONFIGURATION
 // ============================================
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzFAm-sgnetonCng3Y2dtlSAsekx3NBWfLrpPsm8xRPj7cAvm7zNbnR_e5PuGxFtkGZ1A/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxsoLDwtYNoiY60u5R9rlaJGxO8japG1KXbOS8vUFi0X7yrFztKr97dDhzr4QndYt1_/exec";
 let globalData = [];
 let currentCustomer = "";
 let chartInstances = [];
@@ -1760,6 +2134,7 @@ function exportToExcel() {
   // Add header info
   ws_data.push(['BSP Compliance Monitoring Report']);
   ws_data.push(['Generated:', new Date().toLocaleString()]);
+  ws_data.push(['Generated By:', currentUser ? currentUser.username : 'Unknown']);
   ws_data.push(['Customer ID:', currentCustomer]);
   ws_data.push(['Customer Name:', globalData[0]["Customer Name"] || '']);
   ws_data.push([]);
@@ -1827,14 +2202,17 @@ function generateReport() {
 }
 
 // ============================================
-// EVENT LISTENERS
+// EVENT LISTENERS & INITIALIZATION
 // ============================================
 document.getElementById('customerId').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') searchCustomer();
 });
 
-// Initialize
-console.log('Remittance-Customer-Flagged-Monitoring-System loaded');
+// Check for existing session on page load
+document.addEventListener('DOMContentLoaded', function() {
+  checkExistingSession();
+  console.log('Remittance-Customer-Flagged-Monitoring-System loaded');
+});
 </script>
 
 </body>
