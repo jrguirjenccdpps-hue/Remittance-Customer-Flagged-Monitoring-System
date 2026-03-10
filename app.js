@@ -1,7 +1,7 @@
 // ============================================
 // CONFIGURATION - UPDATE THIS URL
 // ============================================
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzQISAJ2NfYzri-cbr26B8-b3oUMFeNy5srdjqXex-9ngPGO12pYstv5s1IOUystpAM/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw0wuRjhfjnEE89ROen8Yj9PBtzQEg_aFQILqjER14x_Q_BD9WmVcLfDr_uRT6QzLl6aw/exec";
 
 // Session Configuration
 const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
